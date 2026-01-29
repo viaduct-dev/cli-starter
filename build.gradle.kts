@@ -9,14 +9,10 @@ plugins {
 
 viaductApplication {
     modulePackagePrefix.set("com.example.viadapp")
-    // Disable automatic BOM/dependency injection - we manage dependencies explicitly
-    applyBOM.set(false)
 }
 
 viaductModule {
     modulePackageSuffix.set("resolvers")
-    // Disable automatic BOM/dependency injection - we manage dependencies explicitly
-    applyBOM.set(false)
 }
 
 dependencies {
