@@ -1,0 +1,47 @@
+// tag::gradle-config[37] build gradle of viaduct.
+// tag::plugins-config[7] How plugins for viaduct are setup.
+plugins {
+    alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.viaduct.application)
+    alias(libs.plugins.viaduct.module)
+    application
+}
+
+viaductApplication {
+    modulePackagePrefix.set("com.example.viadapp")
+}
+
+viaductModule {
+    modulePackageSuffix.set("resolvers")
+}
+
+dependencies {
+    implementation(libs.viaduct.api)
+    implementation(libs.viaduct.runtime)
+
+    implementation(libs.logback.classic)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.jackson.databind)
+
+    implementation(libs.kotlinx.coroutines.jdk8)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.reactive.streams)
+
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.platform.launcher)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // Use test fixtures bundle
+    testImplementation(libs.viaduct.test.fixtures)
+}
+
+application {
+    mainClass.set("com.example.viadapp.ViaductApplicationKt")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
